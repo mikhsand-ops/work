@@ -1,0 +1,27 @@
+insert into portal_account_company_meta (company_id,metakey,metavalue)
+values 
+(
+  186,
+  'waba_data',
+  '{"waba_id": "177423448778038", "phone_id": "135879902952422"}'
+),
+
+(
+  186,
+  'waba_phone_number',
+  '6285714541454'
+);
+
+
+update portal_account_company
+set is_waba_verified = 0
+where id = 187;
+
+
+UPDATE portal_chat_status
+SET callback_st = 0,
+    proc_id = ''
+WHERE id > 91345;
+
+
+delete from portal_account_company_meta where company_id = 187;

@@ -1,0 +1,4 @@
+id,conversation_id,reference_id,session_type,phone_id,phone_number,st,created_tstamp,expired_tstamp,category,billable,pricing_model,data,company_id
+327,6acae8e9d332f09a59a5e7b3d6e7d398,wamid.HBgNNjI4NTc1NTE5NzQxNBUCABEYEkI5RTkxOTdBQURFOEEwQ0FFOQA=,utility,122118179648001585,628158228222,delivered,1706102215,0,utility,1,CBP,{},141
+328,cac965da530235a435e67e076913007e,wamid.HBgNNjI4MTQ2MTIzMDg5NRUCABEYEkZDNjg3Mjg3RDIyMjdCQUQ4MQA=,utility,122118179648001585,628158228222,delivered,1706102215,0,utility,1,CBP,{},141
+329,8cedcbe02e2a3d013d8c0c2e863667b8,wamid.HBgONjI4OTUzMjAwMzA2MTIVAgARGBJERDU0MDIwQUU2RjMwQUE5NjUA,utility,122102040290009866,628999898123,delivered,1706102215,0,utility,1,CBP,{},185

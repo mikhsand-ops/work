@@ -1,0 +1,7 @@
+services:
+  tgram:
+    image: mypython
+    volumes:
+      - ./app:/app
+    restart: unless-stopped
+    entrypoint: python /app/tgram.py

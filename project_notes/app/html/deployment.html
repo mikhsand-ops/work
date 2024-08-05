@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="style.css" type="text/css" />
+	<title>Deployment</title>
+</head>
+<body> <center>
+	    • Deployment<br> <br></center>
+
+<div class="a">	    
+        <a href="index.html"><button class="button">Back to home</button></a><br>
+1. bash (nama log file).bash = download log file<br>
+2. docker images = lihat nama images di docker<br>
+3. copy nama image<br>
+4. docker build -t (nama image):(versi baru) = build dan update versinya<br>
+<form>
+			<input id="myInput" type="textarea" class="form" value="docker build -t :"> 
+		</form>
+		<button class="button" onclick="myFunction('myInput')">Copy</button><br>
+5. docker build -t (nama image):latest = update ke versi terakhir<br>
+<form>
+			<input id="myInput" type="textarea" class="form" value="docker build -t :latest"> 
+		</form>
+		<button class="button" onclick="myFunction('myInput')">Copy</button><br>
+6. docker push (nama image):(versi) = up image versi baru dan latest version ke registry server<br>
+<form>
+			<input id="myInput" type="textarea" class="form" value="docker push :"> 
+		</form>
+		<button class="button" onclick="myFunction('myInput')">Copy</button><br>
+7.  kubectlomni get all = buka kubernet<br>
+8. copy image<br>
+9. kubectlomni scale --replicas=0 (nama image yg ingin dideploy).deployment = rubah scale nya (0 = stop, 1 = up)<br>
+<form>
+			<input id="myInput" type="textarea" class="form" value="kubectlomni scale --replicas=0 .deployment"> 
+		</form>
+		<button class="button" onclick="myFunction('myInput')">Copy</button><br>
+10. kubectlomni logs --since 5m (nama image yg di deploy) = cek logs<br>
+<form>
+			<input id="myInput" type="textarea" class="form" value="kubectlomni logs --since 5m "> 
+		</form>
+		<button class="button" onclick="myFunction('myInput')">Copy</button><br>
+11. kubectl omni get pods = cek list pods yg aktif<br>
+</div>
+
+
+<script>
+		function myFunction() {
+  // Get the text field
+  var copyText = document.getElementById("myInput");
+
+  // Select the text field
+  copyText.select();
+  copyText.setSelectionRange(0, 99999); // For mobile devices
+
+  // Copy the text inside the text field
+  navigator.clipboard.writeText(copyText.value);
+  
+  // Alert the copied text
+  alert("Copied the text: " + copyText.value);
+}
+	</script>
+</body>
+</html>

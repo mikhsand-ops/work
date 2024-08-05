@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: omni # match with namespace
+  name: dev-redis-cache-worker # Deployment Name A
+  labels:
+    app: dev-redis-cache-worker # MARK A
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dev-redis-cache-worker # MARK A
+  template:
+    metadata:
+      labels:
+        app: dev-redis-cache-worker # MARK A
+    spec:
+      containers:
+        - name: dev-redis-cache-worker
+          image: url/redis-cache-worker:0.0.1-alpha1a
+          env:
+            - name: REDIS_HOST
+              value: "redis-0.redis.omni.svc.cluster.local"
+            - name: REDIS_PORT
+              value: "6379"
+            - name: REDIS_PASSWORD
+              value: "R@H4S14(iohta)"
+            - name: APP_VERSION
+              value: "0.0.1-alpha1a"
+            - name: DB_HOST
+              value: "pgm-d9j5n1493nv0yp63.pgsql.ap-southeast-5.rds.aliyuncs.com"
+            - name: DB_PORT
+              value: "5432"
+            - name: DB_USER
+              value: "telakses"
+            - name: DB_PASS
+              value: "R%40H4S144%28kapital%29"
+            - name: DB_NAME
+              value: "dep_prod"
+            - name: REDIS_CACHE_HOST
+              value: "prod-redis-cache-0.prod-redis-cache.omni.svc.cluster.local"
+            - name: REDIS_CACHE_PORT
+              value: "6379"
+            - name: REDIS_CACHE_PASS
+              value: "rahasia(dong)"
+            - name: PORT
+              value: "5000"
+          ports:
+            - containerPort: 5000 # MARK A.1
+          imagePullPolicy: Always
+      imagePullSecrets:
+        - name: regcred
+      restartPolicy: Always

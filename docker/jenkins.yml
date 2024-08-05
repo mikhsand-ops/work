@@ -1,0 +1,22 @@
+services:
+  jenkins:
+    image: jenkins/jenkins:lts
+      privileged: true
+      user: root
+      ports:
+       - 8080:8080
+       - 50000:50000
+    container_name: jenkins
+    volumes:
+      - ./conf:/var/jenkins/conf
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  agent:
+    image: jenkins/ssh-agent:jdk11
+    privileged: true
+    user: root
+    container_name: agent
+    expose:
+      - 22
+    environment:
+      - JENKINS_AGENT_SSH_PUBKEY=ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCsdCsPDJ2h1sfYyN9yCUD9XpHJnjZdq8Tnf5myGF1SPL5VEUmEMrY53J6ZpB0nG2siYt8N4eOfGfo2u4SIEx2A+H7+8LCl4iZzuwOt4KvkE7cg/nbEk/yaKJQarqJIzEdo0Lz39wRWar/biot64wTzjuy73PxzzEpxCRWx8zzBSQh/pAlKvTlQO7jjjRstTR16O87cgAd4PbnN1KJK/lMQP194voHP4bOB9Z71ZpZhF9taKPG7WGphS37GfrpPvyxunhV8O0MSidcE7mR1GrDBi6UEjq+kjAmVwv+SUfwG2vKXD8XozHNLj7o6yuHEKLSfRJyBtQK+JooDmQX7BAhZSi58vqj71pzQ5GvhJKB3KyY4rgtksuvLfVlrei8PUFnsJ03acQyjK4VYHzAeZrRXe+Wq9GoUZ+S3w9RbgHQuQ5VI0qwS7VUP1ecSD831XIG+duiUK4gRklijHK/4W7JLXb6ezs52CAyBBaGPao4zEGFnutSbMaTZMRedaDpxrN0= mid@lane

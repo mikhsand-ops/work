@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="style.css" type="text/css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<title>Upload file</title>
+</head>
+<body>
+	<br>
+	<br>
+	<br>
+	<center><h2><p>scp -P(port) path dir/file(asal) (username server)@(ip atau domain server): path fir/file(tujuan) = untuk upload dari local ke server tujuan</p></h2></center>
+	<center>
+		<form>
+			<input id="myInput" type="textarea" class="form" value="scp -P directory/file username@domain:pathtujuan"> 
+		</form>
+		<button class="button" onclick="myFunction('myInput')">Copy</button>
+		<a href="index.html"><button class="button">Back to home</button></a>
+	</center>
+
+	<script>
+		function myFunction() {
+  // Get the text field
+  var copyText = document.getElementById("myInput");
+
+  // Select the text field
+  copyText.select();
+  copyText.setSelectionRange(0, 99999); // For mobile devices
+
+  // Copy the text inside the text field
+  navigator.clipboard.writeText(copyText.value);
+  
+  // Alert the copied text
+  alert("Copied the text: " + copyText.value);
+}
+	</script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+version: '3'
+services:
+  dumper:
+    image: dumper
+      #command: "python3 parsing_message_status.py"
+    volumes:
+      - ./app:/app
+    environment:
+      DB_USER: 'postgres'
+      DB_PASS: 'user'
+      DB_HOST: 'host.docker.internal'
+      DB_PORT: '5432'
+      DB_NAME: 'test'
+    extra_hosts:
+    - "host.docker.internal:host-gateway"
+

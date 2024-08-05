@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="style.css" type="text/css" />
+	<title>Other commands</title>
+</head>
+<body> <center>
+	    • other commands<br> <br></center>
+
+<div class="a">	    
+        
+1. docker exec -it (nama kontainer) /bin/sh = execute command di dalam kontainer yang berjalan
+<form>
+			<input id="myInput" type="textarea" class="form" value="docker exec -it /bin/sh"> 
+		</form>
+		<button class="button" onclick="myFunction('myInput')">Copy</button><br>
+2. sudo du -h --max-depth=1 /data = melihat disk usage di direktori pada kedalam 1 folder yang human readable
+<form>
+			<input id="myInput" type="textarea" class="form" value="sudo du -h --max-depth=1 /data"> 
+		</form>
+		<button class="button" onclick="myFunction('myInput')">Copy</button><br>
+3. df -h = disk space used in file system<br>
+4. ls -alSh = untuk list semua file dengan format panjang, menampikan permission, menampilkan dan mengurutkan sesuai file size, dan human readable 
+</div>
+<a href="index.html"><button class="button">Home</button></a>
+
+<script>
+		function myFunction() {
+  // Get the text field
+  var copyText = document.getElementById("myInput");
+
+  // Select the text field
+  copyText.select();
+  copyText.setSelectionRange(0, 99999); // For mobile devices
+
+  // Copy the text inside the text field
+  navigator.clipboard.writeText(copyText.value);
+  
+  // Alert the copied text
+  alert("Copied the text: " + copyText.value);
+}
+	</script>
+</body>
+</html>

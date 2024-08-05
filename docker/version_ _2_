@@ -1,0 +1,45 @@
+version: "2"
+services:
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:latest
+    ports:
+      - "4500:4500"
+    volumes: 
+      - "/:/rootfs"
+      - "/var/run:/var/run"
+      - "/sys:/sys"
+      - "/var/lib/docker/:/var/lib/docker"
+      - "/dev/disk/:/dev/disk"
+    privileged: true
+    devices: 
+      - "/dev/kmsg"
+
+
+
+
+version: "2"
+services:
+  cadvisor:
+    image: google/cadvisor
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+    expose:
+      - 8080
+    ports:
+      - "4500:8080"
+    networks:
+      - dbcon
+
+networks:
+  dbcon:
+    name: dbcon
+
+
+proxy_set_header Forwarded $proxy_add_forwarded;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass http://cadvisor:4500/;
+
+proxy_redirect ~(^http://cadvisor:8080|^)/(.*)$ /cadvisor/$2;

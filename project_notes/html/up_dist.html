@@ -1,0 +1,29 @@
+	<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="style.css" type="text/css" />
+	<title>Update Dist</title>
+</head>
+<body> <center>
+	    Update dist<br> <br></center>
+
+<div class="a">	    
+      1. buka ssh servernya<br>
+      2. masuk ke direktori tujuan<br>
+      3. docker ps = lihat kontainer<br>
+      4. docker inspect (nginx/html) |grep working = untuk lihat kontainer yg berjalan berada di direktori mana<br>
+      5. pwd = untuk melihat lokasi direktori saat ini lalu copy<br>
+      6. copy file dist terbaru ke server tujuan<br>
+      7. <b>rm -rf index.html _redirects static/ dist</b> = untuk menghapus dist yang sebelumnya<br>
+      8. <b>tar -zxf</b> = extract file <br>
+      9. <b>mv dist/* .</b> = pindahkan file baru nya<br>
+      10. <b>ls -lshtr</b> = cek file apakah sudah masuk dengan diurutkan berdasarkan waktu nya<br>
+      11. docker-compose stop = stop kontainer<br>
+      12. docker-compose up -d = running lagi kontainernya<br>
+      13. lalu cek di web nya apakah sudah terupdate versinya atau belum
+</div>
+<a href="index.html"><button class="button">Home</button></a>
+</body>
+</html>

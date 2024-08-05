@@ -1,0 +1,67 @@
+create table acd.flow_type(id integer serial primary key, type varchar(64), field_key varchar(64));
+
+create table acd.prompt_list(id serial primary key, owner_user_id bigint, flow_id varchar(64),flow_name varchar(64),prompt_text jsonb default '{}'::jsonb,type varchar(64));
+
+
+insert into acd.prompt_list (id,owner_user_id,flow_id,flow_name,prompt_text,type)
+values
+(37,11,'test create prompt as lisa-supervisor','test create prompt as lisa-supervisor','{"identify_sentence": "testing", "transcription_correction": "aja"}','nonbot'),
+
+insert into acd.user (username,full_name,st,salt,saltedpassword,data,role_id)
+values 
+('servo-ibm-voice','servo ibm voice dev',1,'bpeFmFjcFJAXUBPXkVhNkxHiMQKImZdH','7460f2e6994a1ecc67d29c2897f8694c54685d27fc235d436804ab794c0b4b60','{}',10);
+('servo','servo',1,'vMmVPWZtKdQrsHAVmEgkXMzQHblDXwir','d9877051afe9f38e5b44bab48e883c3121de34cf1e0cff9ee2e61985131fefae','{}',9);
+
+update ps_aors set contact = 'sip:violeta.cayangqu.com:35071'
+where id = 'violeta_aor'; 
+
+pg_dump -U telakses -h 127.0.0.1 -p5444 --schema-only --table='public."portal_account_company_subscriptions_log"' --table='public."portal_bills"' --table='public."portal_chat_messages_temp"' --table='public."portal_files"' --table='public."portal_subscriptions"' --table='public."portal_transactions"' --table='public."portal_wallet_changes_log"' --table='public."portal_wallets"' omni_db > deploy_minggu.sql
+
+pg_dump -U telakses -h 127.0.0.1 -p5444 \
+--exclude-table='public."message_status"' \
+--exclude-table='public."portal_chat_messages"' \
+--exclude-table='public."portal_chat_status"' \
+--exclude-table='public."portal_chat_session"' \
+--exclude-table='public."portal_transactions"' \
+--exclude-table='public."portal_broadcasts"' \
+--exclude-table='public."adm_audit_trails"' \
+--exclude-table='public."public_api_log"' \
+--exclude-table='public."portal_email_notification"' \
+--exclude-table='public."portal_tickets"' \
+--exclude-table='public."portal_activities"' \
+--exclude-table='public."portal_attachments"' \
+--exclude-table='public."portal_wallet_changes_log"' \
+--exclude-table='public."reset_token"' \
+--exclude-schema='information_schema' \
+--exclude-schema='pg_catalog' \
+omni_db > replication_dump.sql
+
+
+pg_dump -U telakses -h 127.0.0.1 -p5444 --schema-only \
+--table='public."message_status"' \
+--table='public."portal_chat_messages"' \
+--table='public."portal_chat_status"' \
+--table='public."portal_chat_session"' \
+--table='public."portal_transaction"' \
+--table='public."portal_broadcast"' \
+--table='public."adm_audit_trails"' \
+--table='public."public_api_log"' \
+--table='public."portal_email_notification"' \
+--table='public."portal_tickets"' \
+--table='public."portal_activities"' \
+--table='public."portal_attachments"' \
+--table='public."portal_wallet_changes_log"' \
+--table='public."reset_token"' \
+omni_db > skema_transaksi.sql
+
+R@H4S144(kapital)
+
+alter table public.portal_broadcasts owner to telakses; 
+
+
+pg_dump -U telakses -h 127.0.0.1 -p5444 \
+--table='public."portal_transactions"' \
+omni_db > portal_transaksi.sql
+
+
+select * from teleasy_faq where id >= 184906 into outfile '/var/lib/mysql/FAQ_202310.csv' FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' LINES TERMINATED BY '\n';

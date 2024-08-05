@@ -1,0 +1,9 @@
+FROM jessica.chandrawisesa.com:5443/hellopy:1.7
+
+WORKDIR /app
+
+COPY ./req.txt req.txt
+RUN pip install -r req.txt
+COPY ./app /app
+
+ENTRYPOINT [ "gunicorn","--workers", "4", "--worker-class", "uvicorn.workers.UvicornWorker", "--timeout", "300","--reload", "--bind", "0.0.0.0:5000", "app:app"]

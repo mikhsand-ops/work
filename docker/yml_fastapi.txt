@@ -1,0 +1,18 @@
+version: '3'
+services:
+  eform-service:
+    container_name: eform-service
+    image: ccms-py
+    volumes:
+      - ./app:/app
+      - /opt/ivr_ai/:/opt/ivr_ai
+    expose:
+      - 6669
+    entrypoint: gunicorn --reload --bind 0.0.0.0:5000 wsgi:app
+    networks:
+      - dbcon
+
+networks:
+  dbcon:
+    name: dbcon
+    external: true

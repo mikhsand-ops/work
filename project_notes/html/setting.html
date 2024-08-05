@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="style.css" type="text/css" />
+	<title>Copying file</title>
+</head>
+<body> <center>
+	    Copying file<br> <br></center>
+
+<div class="a">	    
+        • setting server
+1. buat direktori2 yang diperlukan (conf,logs,certbot,dll)<br>
+2. download/upload filenya<br>
+3. edit file .yml nya sesuai dgn path dan kebutuhannya<br>
+4. docker save myimage:latest | gzip > myimage_latest.tar.gz = save image dari sserver lain<br>
+5. download file dfpy nya dari server lain<br>
+6. docker load -i (nama image).tar.gz = pasang image yang sudah di download<br>
+7. buat file default.conf dengan acuan file yang ada di local<br>
+8. pindahkan defualt.conf ke folder conf<br>
+9. edit docker-compose.yml tambahkan service certbot<br>
+10. curl -L https://raw.githubusercontent.com/wmnnd/nginx-certbot/master/init-letsencrypt.sh > init-letsencrypt.sh = ambil file init nya<br>
+11. edit file init dengan mengubah domain, path, email, ubah semua “docker-compose” menjadi “docker compose” <br>
+12. tutup semua server dan ssl pada file init (tanda # harus selalu di paling kanan)<br>
+13. edit file docker-compose.yml sesuaikan dengan file yg di local <br>
+14. chmod +x file init agar bisa di eksekusi<br>
+15. ./init = jalan kan filenya untuk mendapatkan certificate<br>
+16. copy certificate yang diberi<br>
+17. paste certificate nya ke default.conf<br>
+18. dan buka # server 443 dan ssl nya<br>
+19. buat file index.html di dalam folder html untuk testing<br>
+20. docker compose up -d = jalankan container<br>
+21. test di browser dengan domain yang baru
+</div>
+<a href="index.html"><button class="button">Home</button></a>
+</body>
+</html>

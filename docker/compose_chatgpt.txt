@@ -1,0 +1,27 @@
+services:
+  chatgpt_backend:
+    image: chatgptbe
+    expose:
+      - "5000"
+    volumes:
+      - ./app:/app
+    environment:
+      - "DB_ENGINE_POSTGRE=postgresql"
+      - "DB_DRIVER_POSTGRE=pg8000"
+      - "DB_HOST_POSTGRE=haerin.cayangqu.com"
+      - "DB_PORT_POSTGRE=5432"
+      - "DB_USER_POSTGRE=postgres"
+      - "DB_PASS_POSTGRE=rahasia"
+      - "DB_NAME_POSTGRE=newscrawl"
+      - "OPEN_AI_KEY=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"
+
+    restart: unless-stopped
+    command: uvicorn main:app --proxy-headers --host 0.0.0.0 --port 5000 --reload 
+    networks:
+      - dbcon
+    extra_hosts:
+    - "host.docker.internal:host-gateway"
+
+networks:
+  dbcon:
+    name: dbcon

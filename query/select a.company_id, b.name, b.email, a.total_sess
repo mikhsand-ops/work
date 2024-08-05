@@ -1,0 +1,16 @@
+select a.company_id, b.name, b.email, a.total_session
+from (select company_id, count(*) total_session from portal_chat_session where created_tstamp > 1698796801 group by company_id) a
+left join portal_account_company b
+on b.id = a.company_id;
+
+
+curl 'https://graph.facebook.com/v17.0/102983429334216/phone_numbers' -H 'Authorization: Bearer EAAIP6mZBqvRkBO8ZC87FSKXakSBYiGpJgzGLGINdc9FFZAk5fbejTIqw7gn2or71GvTbZAHvOLykfg9ZC07wSxEpaek2sPRnZCWOFkJjnkJgeppjDWMQ4gOyL3kImhylLVDf3ZAJZCVt3SPwIbI7vgElYmACHurkrOh2XvhkSNt0j9LfEASZAqJX9yZCZB8omxTXmsm'
+
+
+
+rename -v 's/traf/naomitraf/' *.log
+
+
+update qm_trx
+set st = 5
+where id = 414041;

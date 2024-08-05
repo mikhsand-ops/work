@@ -1,0 +1,45 @@
+.form{
+	height: 50px;
+	color: red;
+	width: 750px;
+	font-size: 17px;
+	margin-bottom: 10px;
+}
+
+div.a{
+	text-align: left;
+	font-size: 20px;
+	margin-bottom: 10px;
+}
+
+table.a{
+	text-align: center;
+	border-collapse: collapse;
+	margin-left: auto;
+	margin-right: auto;
+	vertical-align: middle;
+}
+
+div.b{
+	align-items: center;
+}
+
+.button{
+	border-radius: 6px;
+	transition-duration: 0.4s;
+	width: 100px;
+	height: 40px;
+	outline: none;
+	font-size: 15px;
+}
+
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.button:hover{
+	background-color: #273746; 
+  	color: white;
+}

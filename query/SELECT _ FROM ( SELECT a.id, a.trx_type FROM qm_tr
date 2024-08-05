@@ -1,0 +1,42 @@
+SELECT * FROM ( SELECT a.id, a.trx_type FROM qm_trx a LEFT JOIN qm_account b ON b.id = substr(a.origin,3)::numeric LEFT JOIN qm_group c ON c.id = b.groupid WHERE a.id IS NOT NULL AND a.origin LIKE 'i:%'  AND c.bin = '8890'  AND a.tstamp >= 1672506000  AND a.tstamp < 1704042000 UNION SELECT a.id, a.trx_type FROM qm_trx a LEFT JOIN qm_account b ON b.id = substr(a.dest,3)::numeric LEFT JOIN qm_group c ON c.id = b.groupid  WHERE a.id IS NOT NULL AND a.dest LIKE 'i:%'  AND c.bin = '8890'  AND a.tstamp >= 1672506000  AND a.tstamp < 1704042000 ORDER BY id DESC ) AS foo;
+
+
+
+select substr(origin,1,2) from qm_trx where origin like 'i:%' order by id desc limit 1;
+
+110553, 24
+
+select a.id, username, name, groupname, bin from qm_account a left join qm_group b on a.groupid = b.id where a.id in ('110553','24');
+
+
+
+
+
+
+
+
+
+select origin, dest, trx_type,
+	CASE 
+		WHEN trx_type IN (
+        	'DCASH', 
+        	'QR_MANUAL_CREDIT_ISSUER', 
+        	'VA_TOPUP', 
+        	'QR_REFUND', 
+        	'INTERNAL_REFUND'
+      	) 
+      	THEN 
+      		CASE 
+      			WHEN substr(dest, 1, 2)= 'i:' AND substr(dest, 3) ~ '[0-9]$' 
+      				THEN substr(dest, 3):: bigint 
+      			ELSE 0 
+      		END 
+      	ELSE 
+    		CASE 
+    			WHEN substr(origin, 1, 2)= 'i:' AND substr(origin, 3) ~ '[0-9]$' 
+    				THEN substr(origin, 3):: bigint 
+    			ELSE 0 
+    		END 
+    END account_id
+from qm_trx
+where id = 413725;

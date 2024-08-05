@@ -1,0 +1,31 @@
+services:
+  acdbackend:
+    container_name: acd_web_backend
+    image: acdbackend
+    # expose:
+    #  - 5000
+    expose:
+      - "5000"
+    environment:
+      - "DB_ENGINE=postgresql"
+      - "DB_DRIVER=pg8000"
+      - "DB_USER=acduser"
+      - "DB_PASS=rahasia"
+      #- "DB_HOST=128.199.80.150"
+      - "DB_HOST=host.docker.internal"
+      - "DB_PORT=5432"
+      - "DB_NAME=acd"
+      - "LOG_DIR=/opt/ivr_ai/log/"
+    volumes:
+      #- ./app:/app
+      - ./log:/opt/telakses/log
+    command: gunicorn --reload --bind 0.0.0.0:5000 wsgi:app
+    networks:
+      - dbcon
+    restart: unless-stopped
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+networks:
+  dbcon:
+    name: dbcon

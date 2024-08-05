@@ -1,0 +1,44 @@
+services:
+  verif:
+    image: verif_email
+    ports:
+      - "16080:8080"
+    expose:
+      - "8080"
+    environment:
+      - "QRIS_DB_SSL=0"
+      - "QRIS_HTTP_TIMEOUT=30000"
+      - "QRIS_SESSION_TIMEOUT=82800"
+      - "QRIS_DB_HOST=db"
+      - "QRIS_DB_PORT=5432"
+      - "QRIS_DB_USER=postgres"
+      - "QRIS_DB_NAME=dmoney"
+      - "QRIS_DB_PASSWORD=rahasia"
+      - "QRIS_PAN_PREFIX=93600011"
+      - "QRIS_ISSUER_BANK_CODE=011"
+      - "QRIS_ACQUIRING_DOMAIN=ID.CO.DANAMON.WWW"
+      - "QRIS_REPOSITORY_DOMAIN=ID.CO.QRIS.WWW"
+      - "PROCNUM=4"
+      - "QRIS_SIMULATED=0"
+      #- "QRIS_OB_USER=gw_ganteng"
+      #- "QRIS_OB_PASSWORD=gakusahragu"
+      #- "QRIS_OB_CHANNEL=dwallet"
+      #- "QRIS_QR_SERVER=http://queswitch:8080"
+    volumes:
+      - ./qris_env:/cfg
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "900MB"
+        max-file: "4"
+    networks:
+      - dbcon
+    extra_hosts:
+      #- "db:128.199.80.150"
+      - "db:172.17.0.1"
+    restart: unless-stopped
+
+networks:
+  dbcon:
+    name: dbcon
+    external: true

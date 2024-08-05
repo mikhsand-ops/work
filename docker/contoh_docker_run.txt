@@ -1,0 +1,14 @@
+docker run --rm -v "/home/bsmqris/qrisbsm/report/REKON:/report" -v "/home/bsmqris/qrisbsm/report/report_env:/config" -e "SETTLEMENT_DATE=20231116" --add-host="db:10.130.43.188" rpt_1
+
+
+docker run --rm -v "/home/bebas/danamon/report/pelimpahan:/report" -v "/home/bebas/danamon/report/report_env:/config" -e "TRX_DATE=20231113" --add-host="db:10.130.123.158" plmphn_1
+
+docker run --rm -v "/home/bebas/danamon/report/REKON:/report" -v "/home/bebas/danamon/report/report_env:/config" -e "SETTLEMENT_DATE=20231208" --add-host="db:10.130.123.158" rpt_1
+
+
+hasil/0000/2023_10_31/Merchant_Report_2023-10-31_to_2023-10-31.xlsx
+
+
+curl -k -X POST 'https://yuriva.com/qr/acquirer/notification' -H 'cache-control: no-cache' -H 'content-type: application/json' -d  '{"card_acceptor_id":"7777391498","merchant_city":"awdawdawd","pos_pan_method":"01","local_transaction_date":"1107","local_transaction_date_time":"1107155838","transmission_datetime":"1107155838","settlement_date":"1107","processing_code":"261000","merchant_name":"tes 11 feb","message_type":"0200","local_transaction_time":"155838","retrieval_ref_no":"699347518871","product_indicator":"Q001","additional_data":"PI04Q001CD16NOVI PUJI ASTUTIMC03UME","merchant_country_code":"ID","capture_date":"1107","forwarding_institution_id":"360004","source_pan":"9360000210055252723","channel_id":"ISO_SWITCHING_AJ","account_no_cr":"9360001100000002077","additional_data_national":"610511480","account_currency":"360","system_trace_audit_number":"518871","transaction_amount":"000004920000","pos_entry_mode":"011","primary_account_number":"9360001100000002077","retrieval_reference_number":"699347518871","transaction_currency_code":"360","amount_convenience_fee":"C00000000","trace_no":"518871","bin_no":"0000","request_time":"20231107155838","merchant_criteria":"UME","service_code":"QR_NOTIFY","acquiring_institution_id":"93600011","merchant_type":"4812","account_no_dr":"9360000210055252723","approval_code":"362607","user_ref_no":"SW47518871","amount":"000005000000","retrieval_reference_no":"699347518871","issuer_id":"93600002","pos_pin_entry":"1","card_acceptor_terminal_id":"7777391498","tip_amount":"C00000000","customer_name":"TEST OFF US DULU","auth_token":"35e91fd6ab829dc4f2aa4d524a3c495db206b248ca9d3fac2d55519577141282"}'
+
+\copy (select * from outlets) to '/home/bsmqris/data_cabang_bsi.csv' csv header;

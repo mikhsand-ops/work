@@ -1,0 +1,31 @@
+insert into portal_subsciptions (id,name,created_time,updated_time,st,min_comm,setup_fee,authentication_fee,marketing_fee,service_fee,utility_fee,package_selection,data,flag)
+values (
+5,
+'Medium (Promo)',
+1700725283, 
+1700725283,
+1,
+5.800.000.00,
+0.00,
+580.00,
+780.00,
+480.00,
+400.00,
+'{
+  "notif": "1",
+  "marketing": "1",
+  "otp": "1"
+}',
+'{
+  "whatsapp_official": "true",
+  "integrated_api": "true",
+  "portal": "true",
+  "support247": "true"
+}',
+'promo'
+);
+
+
+update portal_subscriptions set service_fee = 380 where id = 5;
+
+update portal_subscriptions set setup_fee = 1000000.00, min_comm = 0.00 where id = 1;
